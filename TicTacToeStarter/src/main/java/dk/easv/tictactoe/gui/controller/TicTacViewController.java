@@ -3,6 +3,7 @@ package dk.easv.tictactoe.gui.controller;
 
 // Java imports
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -25,14 +26,45 @@ public class TicTacViewController implements Initializable
     @FXML
     private Label lblPlayer;
 
+    ArrayList<Button> buttons1Row = new ArrayList<>();
+    ArrayList<Button> buttons2Row = new ArrayList<>();
+    ArrayList<Button> buttons3Row = new ArrayList<>();
+
     @FXML
-    private Button btnNewGame;
+    private Button btn1;
+
+    @FXML
+    private Button btn2;
+
+    @FXML
+    private Button btn3;
+    @FXML
+    private Button btn4;
+    @FXML
+    private Button btn5;
+    @FXML
+    private Button btn6;
+    @FXML
+    private Button btn7;
+    @FXML
+    private Button btn8;
+    @FXML
+    private Button btn9;
+
+    @FXML
+    private Button currentButton;
 
     @FXML
     private GridPane gridPane;
+
+    @FXML
+    private Button btnNewGame;
+
     
     private static final String TXT_PLAYER = "Player: ";
     private IGameBoard game;
+
+    private int player;
 
     /**
      * Event handler for the grid buttons
@@ -48,9 +80,10 @@ public class TicTacViewController implements Initializable
             Integer col = GridPane.getColumnIndex((Node) event.getSource());
             int r = (row == null) ? 0 : row;
             int c = (col == null) ? 0 : col;
-            int player = game.getNextPlayer();
-            if (game.play(c, r))
-            {
+//            System.out.println(r);
+//            System.out.println(c);
+            //int player = game.getNextPlayer();
+            if (game.play(c, r)) {
                 if (game.isGameOver())
                 {
                     int winner = game.getWinner();
@@ -58,10 +91,12 @@ public class TicTacViewController implements Initializable
                 }
                 else
                 {
-                    Button btn = (Button) event.getSource();
-                    String xOrO = player == 0 ? "X" : "O";
-                    btn.setText(xOrO);
-                    setPlayer();
+                    if (checkSelected(r, c)){
+                        Button btn = (Button) event.getSource();
+                        String xOrO = (player == 0) ? "X" : "O";
+                        btn.setText(xOrO);
+                        setPlayer();
+                    }
                 }
             }
         } catch (Exception e)
@@ -97,8 +132,31 @@ public class TicTacViewController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-        game = new GameBoard();
+        buttons1Row.add(btn1);
+        buttons1Row.add(btn2);
+        buttons1Row.add(btn3);
+        buttons2Row.add(btn4);
+        buttons2Row.add(btn5);
+        buttons2Row.add(btn6);
+        buttons3Row.add(btn7);
+        buttons3Row.add(btn8);
+        buttons3Row.add(btn9);
+        game = new GameBoard(gridPane, buttons1Row, buttons2Row, buttons3Row);
         setPlayer();
+    }
+
+    private boolean checkSelected(int row, int cloumn){
+        for (Node node : gridPane.getChildren()) {
+            Integer r = GridPane.getRowIndex(node);
+            Integer c = GridPane.getColumnIndex(node);
+            int rr = (r == null) ? 0 : r;
+            int cc = (c == null) ? 0 : c;
+            if (rr == row && cc == cloumn) {
+                currentButton = (Button) node;
+                break;
+            }
+        }
+        return currentButton.getText().isEmpty();
     }
 
     /**
@@ -106,7 +164,8 @@ public class TicTacViewController implements Initializable
      */
     private void setPlayer()
     {
-        lblPlayer.setText(TXT_PLAYER + game.getNextPlayer());
+        player = game.getNextPlayer();
+        lblPlayer.setText(TXT_PLAYER + player);
     }
 
 
