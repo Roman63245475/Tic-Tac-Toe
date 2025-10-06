@@ -112,7 +112,7 @@ public class TicTacViewController implements Initializable
     private void handleNewGame(ActionEvent event)
     {
         game.newGame();
-        setPlayer();
+        setPlayer(0);
         clearBoard();
     }
 
@@ -143,19 +143,19 @@ public class TicTacViewController implements Initializable
         setPlayer();
     }
 
-    private boolean checkSelected(int row, int cloumn){
-        for (Node node : gridPane.getChildren()) {
-            Integer r = GridPane.getRowIndex(node);
-            Integer c = GridPane.getColumnIndex(node);
-            int rr = (r == null) ? 0 : r;
-            int cc = (c == null) ? 0 : c;
-            if (rr == row && cc == cloumn) {
-                currentButton = (Button) node;
-                break;
-            }
-        }
-        return currentButton.getText().isEmpty();
-    }
+//    private boolean checkSelected(int row, int cloumn){
+//        for (Node node : gridPane.getChildren()) {
+//            Integer r = GridPane.getRowIndex(node);
+//            Integer c = GridPane.getColumnIndex(node);
+//            int rr = (r == null) ? 0 : r;
+//            int cc = (c == null) ? 0 : c;
+//            if (rr == row && cc == cloumn) {
+//                currentButton = (Button) node;
+//                break;
+//            }
+//        }
+//        return currentButton.getText().isEmpty();
+//    }
 
     /**
      * Set the next player
@@ -163,6 +163,11 @@ public class TicTacViewController implements Initializable
     private void setPlayer()
     {
         player = game.getNextPlayer();
+        lblPlayer.setText(TXT_PLAYER + player);
+    }
+
+    private void setPlayer(int player){
+        this.player = player;
         lblPlayer.setText(TXT_PLAYER + player);
     }
 

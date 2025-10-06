@@ -183,6 +183,8 @@ public class GameBoard implements IGameBoard
     public void newGame()
     {
         //TODO Implement this method
+        player =  0;
+        flag = false;
     }
 }
 
