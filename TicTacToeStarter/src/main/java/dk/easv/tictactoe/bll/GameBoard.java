@@ -22,11 +22,13 @@ public class GameBoard implements IGameBoard
         matrix.add(buttons3);
     }
 
-    private ArrayList<ArrayList<Button>> matrix;
+    private ArrayList<ArrayList<Button>> matrix = new ArrayList<>();
 
     private GridPane gridpane;
 
     private int counter = 0;
+
+    private int player = 0;
 
     /**
      * Returns 0 for player 0, 1 for player 1.
@@ -55,22 +57,67 @@ public class GameBoard implements IGameBoard
      */
     public boolean play(int col, int row) {
 
-        for (Node node : gridpane.getChildren()) {
-            Button btn = (Button) node;
-            if (btn.getText().isEmpty()){
-                System.out.println("Game proceeds");
-                //amount++;
-                return true;
+        Button btn = matrix.get(row).get(col);
+        if (btn.getText().isEmpty()){
+            if(player==0){
+                btn.setText("X");
+                player++;
+            }
+            else{
+                player = 0;
+                btn.setText("O");
             }
         }
-        System.out.println("Game is over");
-        return false;
+        if (matrix.get(0).get(0).getText().equals("X") && matrix.get(0).get(1).getText().equals("X") && matrix.get(0).get(2).getText().equals("X") || matrix.get(0).get(0).getText().equals("O") && matrix.get(0).get(1).getText().equals("O") && matrix.get(0).get(2).getText().equals("O")){
+            System.out.println("Game is Over");
+            return false;
+        }
+        else if (matrix.get(1).get(0).getText().equals("X") && matrix.get(1).get(1).getText().equals("X") && matrix.get(1).get(2).getText().equals("X") || matrix.get(1).get(0).getText().equals("O") && matrix.get(1).get(1).getText().equals("O") && matrix.get(1).get(2).getText().equals("O")){
+            System.out.println("Game is Over");
+            return false;
+        }
+        else if (matrix.get(2).get(0).getText().equals("X") && matrix.get(2).get(1).getText().equals("X") && matrix.get(2).get(2).getText().equals("X") || matrix.get(2).get(0).getText().equals("O") && matrix.get(2).get(1).getText().equals("O") && matrix.get(2).get(2).getText().equals("O")) {
+            System.out.println("Game is Over");
+            return false;
+        }
+        else if (matrix.get(0).get(0).getText().equals("X") && matrix.get(1).get(0).getText().equals("X") && matrix.get(2).get(0).getText().equals("X") || matrix.get(0).get(0).getText().equals("O") && matrix.get(1).get(0).getText().equals("O") && matrix.get(2).get(0).getText().equals("O")){
+            System.out.println("Game is Over");
+            return false;
+        }
+        else if (matrix.get(0).get(1).getText().equals("X") && matrix.get(1).get(1).getText().equals("X") && matrix.get(2).get(1).getText().equals("X") || matrix.get(0).get(1).getText().equals("O") && matrix.get(1).get(1).getText().equals("O") && matrix.get(2).get(1).getText().equals("O")){
+            System.out.println("Game is Over");
+            return false;
+        }
+        else if (matrix.get(0).get(2).getText().equals("X") && matrix.get(1).get(2).getText().equals("X") && matrix.get(2).get(2).getText().equals("X") || matrix.get(0).get(2).getText().equals("O") && matrix.get(1).get(2).getText().equals("O") && matrix.get(2).get(2).getText().equals("O")){
+            System.out.println("Game is Over");
+            return false;
+        }
+        else if (matrix.get(0).get(0).getText().equals("X") && matrix.get(1).get(1).getText().equals("X") && matrix.get(2).get(2).getText().equals("X") || matrix.get(0).get(0).getText().equals("O") && matrix.get(1).get(1).getText().equals("O") && matrix.get(2).get(2).getText().equals("O")){
+            System.out.println("Game is Over");
+            return false;
+        }
+        else if (matrix.get(2).get(0).getText().equals("X") && matrix.get(1).get(1).getText().equals("X") && matrix.get(0).get(2).getText().equals("X") || matrix.get(2).get(0).getText().equals("O") && matrix.get(1).get(1).getText().equals("O") && matrix.get(0).get(2).getText().equals("O")){
+            System.out.println("Game is Over");
+            return false;
+        }
+        btn.setText("");
+        return true;
+    }
+    //        for (Node node : gridpane.getChildren()) {
+//            Button btn = (Button) node;
+//            if (btn.getText().isEmpty()){
+//                System.out.println("Game proceeds");
+//                //amount++;
+//                return true;
+//            }
+//        }
+//        System.out.println("Game is over");
+//        return false;
+
+//    private boolean winningCondition(int col, int row) {
 //
-    }
-
-    private boolean winningCondition(int col, int row) {
-
-    }
+//        return false;
+//    }
     /**
      * Tells us if the game has ended either by draw or by meeting the winning
      * condition.
