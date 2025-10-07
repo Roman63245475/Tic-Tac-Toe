@@ -26,9 +26,9 @@ public class TicTacViewController implements Initializable
     @FXML
     private Label lblPlayer;
 
-    ArrayList<Button> buttons1Row = new ArrayList<>();
-    ArrayList<Button> buttons2Row = new ArrayList<>();
-    ArrayList<Button> buttons3Row = new ArrayList<>();
+    private ArrayList<Button> buttons1Row = new ArrayList<>();
+    private ArrayList<Button> buttons2Row = new ArrayList<>();
+    private ArrayList<Button> buttons3Row = new ArrayList<>();
 
     @FXML
     private Button btn1;
