@@ -79,24 +79,48 @@ public class GameBoard implements IGameBoard
                 if (matrix.get(i).get(0).getText().equals("X") && matrix.get(i).get(1).getText().equals("X") && matrix.get(i).get(2).getText().equals("X") || matrix.get(i).get(0).getText().equals("O") && matrix.get(i).get(1).getText().equals("O") && matrix.get(i).get(2).getText().equals("O")){
                     System.out.println("Game is Over");
                     flag = true;
+                    Button btn1 = matrix.get(i).get(0);
+                    Button btn2 = matrix.get(i).get(1);
+                    Button btn3 = matrix.get(i).get(2);
+                    btn1.setStyle("-fx-background-color: lightgreen");
+                    btn2.setStyle("-fx-background-color: lightgreen");
+                    btn3.setStyle("-fx-background-color: lightgreen");
                     setWinner(player);
                     return false;
                 }
                 if (matrix.get(0).get(i).getText().equals("X") && matrix.get(1).get(i).getText().equals("X") && matrix.get(2).get(i).getText().equals("X") || matrix.get(0).get(i).getText().equals("O") && matrix.get(1).get(i).getText().equals("O") && matrix.get(2).get(i).getText().equals("O")){
                     System.out.println("Game is Over");
                     flag = true;
+                    Button btn1 = matrix.get(0).get(i);
+                    Button btn2 = matrix.get(1).get(i);
+                    Button btn3 = matrix.get(2).get(i);
+                    btn1.setStyle("-fx-background-color: lightgreen");
+                    btn2.setStyle("-fx-background-color: lightgreen");
+                    btn3.setStyle("-fx-background-color: lightgreen");
                     setWinner(player);
                     return false;
                 }
                 if (matrix.get(0).get(0).getText().equals("X") && matrix.get(1).get(1).getText().equals("X") && matrix.get(2).get(2).getText().equals("X") || matrix.get(0).get(0).getText().equals("O") && matrix.get(1).get(1).getText().equals("O") && matrix.get(2).get(2).getText().equals("O")){
                     System.out.println("Game is Over");
                     flag = true;
+                    Button btn1 = matrix.get(0).get(0);
+                    Button btn2 = matrix.get(1).get(1);
+                    Button btn3 = matrix.get(2).get(2);
+                    btn1.setStyle("-fx-background-color: lightgreen");
+                    btn2.setStyle("-fx-background-color: lightgreen");
+                    btn3.setStyle("-fx-background-color: lightgreen");
                     setWinner(player);
                     return false;
                 }
                 if (matrix.get(2).get(0).getText().equals("X") && matrix.get(1).get(1).getText().equals("X") && matrix.get(0).get(2).getText().equals("X") || matrix.get(2).get(0).getText().equals("O") && matrix.get(1).get(1).getText().equals("O") && matrix.get(0).get(2).getText().equals("O")){
                     System.out.println("Game is Over");
                     flag = true;
+                    Button btn1 = matrix.get(2).get(0);
+                    Button btn2 = matrix.get(1).get(1);
+                    Button btn3 = matrix.get(0).get(2);
+                    btn1.setStyle("-fx-background-color: lightgreen");
+                    btn2.setStyle("-fx-background-color: lightgreen");
+                    btn3.setStyle("-fx-background-color: lightgreen");
                     setWinner(player);
                     return false;
                 }
@@ -182,7 +206,11 @@ public class GameBoard implements IGameBoard
      */
     public void newGame()
     {
-        //TODO Implement this method
+        for (int i = 0; i <= matrix.size() - 1; i++){
+            for(Button btn : matrix.get(i)){
+                btn.setStyle("");
+            }
+        }
         player =  0;
         flag = false;
     }
