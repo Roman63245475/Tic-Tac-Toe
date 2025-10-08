@@ -56,10 +56,6 @@ public class TicTacViewController implements Initializable
 
     @FXML
     private GridPane gridPane;
-
-    @FXML
-    private Button btnNewGame;
-
     
     private static final String TXT_PLAYER = "Player: ";
     private IGameBoard game;
@@ -80,13 +76,7 @@ public class TicTacViewController implements Initializable
             Integer col = GridPane.getColumnIndex((Node) event.getSource());
             int r = (row == null) ? 0 : row;
             int c = (col == null) ? 0 : col;
-//            System.out.println(r);
-//            System.out.println(c);
-            //int player = game.getNextPlayer();
             if (game.play(c, r)) {
-                    //Button btn = (Button) event.getSource();
-//                  String xOrO = (player == 0) ? "X" : "O";
-//                  btn.setText(xOrO);
                 setPlayer();
                 System.out.println("This one is called");
             }
@@ -139,23 +129,9 @@ public class TicTacViewController implements Initializable
         buttons3Row.add(btn7);
         buttons3Row.add(btn8);
         buttons3Row.add(btn9);
-        game = new GameBoard(gridPane, buttons1Row, buttons2Row, buttons3Row);
+        game = new GameBoard(buttons1Row, buttons2Row, buttons3Row);
         setPlayer();
     }
-
-//    private boolean checkSelected(int row, int cloumn){
-//        for (Node node : gridPane.getChildren()) {
-//            Integer r = GridPane.getRowIndex(node);
-//            Integer c = GridPane.getColumnIndex(node);
-//            int rr = (r == null) ? 0 : r;
-//            int cc = (c == null) ? 0 : c;
-//            if (rr == row && cc == cloumn) {
-//                currentButton = (Button) node;
-//                break;
-//            }
-//        }
-//        return currentButton.getText().isEmpty();
-//    }
 
     /**
      * Set the next player
